@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface MovieRepo extends JpaRepository<Movies, Integer> {
 
-    @Query("SELECT m FROM Movies m WHERE m.genre = :genre")
+    @Query("SELECT m FROM Movies m WHERE LOWER(m.genres) LIKE LOWER(CONCAT('%', :genre, '%'))")
     List<Movies> findByGenre(@Param("genre") String genre);
 }
 
