@@ -11,6 +11,7 @@ import com.example.Shows.Repository.SeriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +31,7 @@ public class SeriesService {
     public List<SeriesDTO> getshowsgenre(String genre) {
         List<Series> series=seriesRepository.findByGenreContainingIgnoreCase(genre);
         System.out.println(series.size());
-        List<SeriesDTO> seriesDTOS = List.of();
+        List<SeriesDTO> seriesDTOS = new ArrayList<>();
         for(Series s: series){
             SeriesDTO seriesDTO = new SeriesDTO();
             seriesDTO.setSeriesId(s.getSeriesId());
@@ -41,15 +42,33 @@ public class SeriesService {
             seriesDTO.setGenres(s.getGenres());
             seriesDTO.setThumbnailUrl(s.getThumbnail_url());
             List<SeasonDTO> seasonDTOs = seasonService.getseasons(s.getSeriesId());
-            System.out.println(seriesDTO);
+            System.out.println(seasonDTOs.size());
             seriesDTO.setSeasons(seasonDTOs);
             seriesDTOS.add(seriesDTO);
         }
         return seriesDTOS;
     }
 
-    public Object getallseries() {
+    public List<SeriesDTO> getallseries() {
         System.out.println("Print");
-        return seriesRepository.findAll();
+        List<Series> series=seriesRepository.findAll();
+        System.out.println(series.size());
+        List<SeriesDTO> seriesDTOS = new ArrayList<>();
+        for(Series s: series){
+            SeriesDTO seriesDTO = new SeriesDTO();
+            seriesDTO.setSeriesId(s.getSeriesId());
+            seriesDTO.setTitle(s.getTitle());
+            seriesDTO.setDescription(s.getDescription());
+            seriesDTO.setReleaseDate(s.getReleaseDate());
+            seriesDTO.setLanguage(s.getLanguage());
+            seriesDTO.setGenres(s.getGenres());
+            seriesDTO.setThumbnailUrl(s.getThumbnail_url());
+            List<SeasonDTO> seasonDTOs = seasonService.getseasons(s.getSeriesId());
+            System.out.println(seasonDTOs.size());
+            seriesDTO.setSeasons(seasonDTOs);
+            seriesDTOS.add(seriesDTO);
+        }
+
+        return seriesDTOS;
     }
 }

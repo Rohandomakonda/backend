@@ -15,9 +15,8 @@ public class Episode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "season_id", nullable = false)
-    private Season season;
+
+    private Long seasonId;
 
     private String title;
 
@@ -46,12 +45,12 @@ public class Episode {
         this.id = id;
     }
 
-    public Season getSeason() {
-        return season;
+    public Long getSeasonId() {
+        return seasonId;
     }
 
-    public void setSeason(Season season) {
-        this.season = season;
+    public void setSeasonId(Long seasonId) {
+        this.seasonId = seasonId;
     }
 
     public String getTitle() {

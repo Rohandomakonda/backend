@@ -9,6 +9,7 @@ import com.example.Shows.Service.EpisodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,21 +23,23 @@ public class SeasonService {
     private EpisodeService episodeService;
 
     public List<SeasonDTO> getseasons(Long seriesid){
-        List<Season> seasons = seasonRepository.findBySeries_SeriesId(seriesid);
-        List<SeasonDTO> seasonDTOS = List.of();
+        List<Season> seasons = seasonRepository.findBySeriesId(seriesid);
+        List<SeasonDTO> seasonDTOS = new ArrayList<>();
         for(Season season:seasons){
             SeasonDTO seasonDTO = new SeasonDTO();
-            seasonDTO.setSeasonid(season.getSeasonid());
+            seasonDTO.setSeasonid(season.getSeasonId());
             seasonDTO.setSeasonNumber(season.getSeasonNumber());
             seasonDTO.setReleaseDate(season.getReleaseDate());
             seasonDTO.setEpisodeCount(season.getEpisodeCount());
-            List<EpisodeDTO> episodeDTOs = episodeService.getallepisodes(season.getSeasonid());
+            List<EpisodeDTO> episodeDTOs = episodeService.getallepisodes(season.getSeasonId());
             seasonDTO.setEpisodes(episodeDTOs);
             seasonDTOS.add(seasonDTO);
         }
         return seasonDTOS;
     }
 
-    public Series addSeason(Season season) {
+    public Season addSeason(Season season) {
+        seasonRepository.save(season);
+        return season;
     }
 }

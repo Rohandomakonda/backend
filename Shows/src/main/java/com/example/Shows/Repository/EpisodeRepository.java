@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface EpisodeRepository extends JpaRepository<Episode,Integer> {
 
-    List<Episode> findBySeason_Seasonid(Long season_Id);
+    List<Episode> findBySeasonId(Long seasonId);
 
 }

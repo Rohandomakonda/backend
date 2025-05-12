@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface SeasonRepository extends JpaRepository<Season,Integer> {
 
-    List<Season> findBySeries_SeriesId(Long series_id);
+    List<Season> findBySeriesId(Long seriesId);
 
 }

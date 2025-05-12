@@ -22,20 +22,18 @@ public class Season {
 
     @Column(name = "episode_count")
     private int episodeCount;
-
-    @ManyToOne
-    @JoinColumn(name = "series_id", nullable = false)
-    private Series series;
+    @Column(name = "series_id")
+    private Long  seriesId;
 
 
 
     // Getters and setters
 
-    public Long getSeasonid() {
+    public Long getSeasonId() {
         return seasonid;
     }
 
-    public void setSeasonid(Long seasonid) {
+    public void setSeasonId(Long seasonid) {
         this.seasonid = seasonid;
     }
 
@@ -63,11 +61,11 @@ public class Season {
         this.episodeCount = episodeCount;
     }
 
-    public Series getSeries() {
-        return series;
+    public Long getSeriesId() {
+        return seriesId;
     }
 
-    public void setSeries(Series series) {
-        this.series = series;
+    public void setSeries(Long seriesId) {
+        this.seriesId = seriesId;
     }
 }

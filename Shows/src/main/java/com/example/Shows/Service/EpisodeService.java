@@ -6,6 +6,7 @@ import com.example.Shows.Repository.EpisodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,8 +16,8 @@ public class EpisodeService {
     private EpisodeRepository episodeRepository;
 
     public List<EpisodeDTO> getallepisodes(Long seasonid){
-        List<Episode> episodes= episodeRepository.findBySeason_Seasonid(seasonid);
-        List<EpisodeDTO> episodeDTOS = List.of();
+        List<Episode> episodes= episodeRepository.findBySeasonId(seasonid);
+        List<EpisodeDTO> episodeDTOS = new ArrayList<>();
         for(Episode ep:episodes){
             EpisodeDTO epdto = new EpisodeDTO();
             epdto.setId(ep.getId());
@@ -29,5 +30,10 @@ public class EpisodeService {
             episodeDTOS.add(epdto);
         }
         return episodeDTOS;
+    }
+
+    public Episode addEpisode(Episode episode) {
+        episodeRepository.save(episode);
+        return episode;
     }
 }

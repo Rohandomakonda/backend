@@ -35,7 +35,7 @@ public class SeasonController {
         season.setEpisodeCount(episodecount);
         season.setSeries(seriesid);
 
-        Series saved = ss.addSeason(season);
+        Season saved = ss.addSeason(season);
         return ResponseEntity.ok(saved);
 
     }
