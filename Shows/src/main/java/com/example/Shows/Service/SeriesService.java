@@ -20,6 +20,13 @@ public class SeriesService {
     private SeriesRepository seriesRepository;
     @Autowired
     private SeasonService seasonService;
+
+    public Series addSeries(Series series) {
+        System.out.println("hello1");
+        seriesRepository.save(series);
+        return series;
+    }
+
     public List<SeriesDTO> getshowsgenre(String genre) {
         List<Series> series=seriesRepository.findByGenreContainingIgnoreCase(genre);
         List<SeriesDTO> seriesDTOS = List.of();
@@ -36,5 +43,10 @@ public class SeriesService {
             seriesDTO.setSeasons(seasonDTOs);
         }
         return seriesDTOS;
+    }
+
+    public Object getallseries() {
+        System.out.println("Print");
+        return seriesRepository.findAll();
     }
 }

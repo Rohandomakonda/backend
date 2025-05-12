@@ -30,4 +30,44 @@ public class Season {
 
 
     // Getters and setters
+
+    public Long getSeasonid() {
+        return seasonid;
+    }
+
+    public void setSeasonid(Long seasonid) {
+        this.seasonid = seasonid;
+    }
+
+    public int getSeasonNumber() {
+        return seasonNumber;
+    }
+
+    public void setSeasonNumber(int seasonNumber) {
+        this.seasonNumber = seasonNumber;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public int getEpisodeCount() {
+        return episodeCount;
+    }
+
+    public void setEpisodeCount(int episodeCount) {
+        this.episodeCount = episodeCount;
+    }
+
+    public Series getSeries() {
+        return series;
+    }
+
+    public void setSeries(Series series) {
+        this.series = series;
+    }
 }
