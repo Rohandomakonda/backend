@@ -3,6 +3,7 @@ package com.example.Shows.Service;
 import com.example.Shows.DTO.EpisodeDTO;
 import com.example.Shows.DTO.SeasonDTO;
 import com.example.Shows.Models.Season;
+import com.example.Shows.Models.Series;
 import com.example.Shows.Repository.SeasonRepository;
 import com.example.Shows.Service.EpisodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,6 @@ public class SeasonService {
         return seasonDTOS;
     }
 
+    public Series addSeason(Season season) {
+    }
 }

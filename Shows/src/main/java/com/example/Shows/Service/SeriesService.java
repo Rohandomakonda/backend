@@ -29,6 +29,7 @@ public class SeriesService {
 
     public List<SeriesDTO> getshowsgenre(String genre) {
         List<Series> series=seriesRepository.findByGenreContainingIgnoreCase(genre);
+        System.out.println(series.size());
         List<SeriesDTO> seriesDTOS = List.of();
         for(Series s: series){
             SeriesDTO seriesDTO = new SeriesDTO();
@@ -40,7 +41,9 @@ public class SeriesService {
             seriesDTO.setGenres(s.getGenres());
             seriesDTO.setThumbnailUrl(s.getThumbnail_url());
             List<SeasonDTO> seasonDTOs = seasonService.getseasons(s.getSeriesId());
+            System.out.println(seriesDTO);
             seriesDTO.setSeasons(seasonDTOs);
+            seriesDTOS.add(seriesDTO);
         }
         return seriesDTOS;
     }
