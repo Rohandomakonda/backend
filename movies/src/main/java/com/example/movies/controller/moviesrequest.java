@@ -58,6 +58,12 @@ public class moviesrequest {
 
 
     //get all movies
+    @GetMapping("/allmovies")
+    public ResponseEntity<?> getallmovies(){
+        return ResponseEntity.ok(movieservice.getallmovies());
+    }
+
+
 
 
 

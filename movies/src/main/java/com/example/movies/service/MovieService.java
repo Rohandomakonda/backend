@@ -23,4 +23,10 @@ public class MovieService {
         movierepo.save(movie);
         return movie;
     }
+
+    public List<Movies> getallmovies() {
+        System.out.println("All movies found");
+        return movierepo.findAll();
+
+    }
 }
