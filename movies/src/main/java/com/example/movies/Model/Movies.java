@@ -35,6 +35,7 @@ public class Movies {
 
     private Double rating;
 
+
     @Lob
     @Column(name = "video")
     private byte[] videoData;  // This stores the actual MP4 binary
