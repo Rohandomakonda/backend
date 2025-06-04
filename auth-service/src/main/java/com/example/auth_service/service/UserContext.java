@@ -22,6 +22,7 @@ public class UserContext {
         String username = authentication.getName();
         Long userId = authRepo.getUserIdByUsername(username);
 
+
         return (userId);
     }
 }
