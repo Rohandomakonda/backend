@@ -37,6 +37,8 @@ public class AuthService {
 
     @Autowired
     private GoogleTokenValidator googleTokenValidator;
+    @Autowired
+    private EmailService emailService;
 
 
     public AuthService(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, JwtTokenProvider tokenProvider, AuthRepo repo, OtpService otpservice) {
@@ -130,20 +132,35 @@ public class AuthService {
 
     public User registerUser(String email, String password, String name) {
         Optional<User> userOptional = repo.findByEmail(email);
-        if (userOptional.isPresent() && userOptional.get().isVerified()) {
-            throw new RuntimeException("Email already registered pls login");
+
+        if (userOptional.isPresent()) {
+            User existingUser = userOptional.get();
+            if (existingUser.isVerified()) {
+                // User already registered and verified
+                // Just return existing user or null or handle accordingly
+                return existingUser;
+            } else {
+                // User exists but not verified — resend OTP
+                String otp = otpservice.generateAndStoreOtp(email);
+                emailService.sendOtpEmail(email, otp);
+                return existingUser;
+            }
         }
 
+        // User doesn't exist — create new user and send OTP
         User user = new User();
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
         user.setName(name);
         user.setVerified(false);
         repo.save(user);
-        String otp = otpservice.generateAndStoreOtp(email);
 
-        return user ;
+        String otp = otpservice.generateAndStoreOtp(email);
+        emailService.sendOtpEmail(email, otp);
+
+        return user;
     }
+
 
     public AuthResponse authenticateWithGoogle(String token) {
         try {
@@ -251,8 +268,25 @@ public class AuthService {
 
 
     public void sendForgotPasswordOtp(String email) {
-        otpservice.generateAndStoreOtp(email);
+        // Trim whitespace from email before use
+        String cleanEmail = email.trim();
+        System.out.println(email);
+
+        // Optionally, you can also check if email is valid format before proceeding
+        if (!isValidEmail(cleanEmail)) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+
+        String otp = otpservice.generateAndStoreOtp(cleanEmail);
+        emailService.sendOtpEmail(cleanEmail, otp);
     }
+
+    // Simple regex email validation (optional)
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(emailRegex);
+    }
+
 
 
     public boolean verifyFpOtp(String email, String otp) {

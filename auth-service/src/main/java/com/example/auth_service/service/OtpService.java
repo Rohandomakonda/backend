@@ -23,6 +23,7 @@ public class OtpService {
 
     public boolean validateOtp(String userEmail, String inputOtp) {
         String redisKey = "otp_" + userEmail;
+
         String storedOtp = redisTemplate.opsForValue().get(redisKey);
         return inputOtp.equals(storedOtp);
     }
