@@ -14,9 +14,41 @@ public class Profile {
     private Long user_id;
 
     @Column(nullable = false, unique = false)
-    private Long name;
+    private String name;
+
+    public Long getAvatar() {
+        return avatar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAvatar(Long avatar) {
+        this.avatar = avatar;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     @Column(nullable = false)
-    private String avatar;
+    private Long avatar;
 
 }
