@@ -17,6 +17,9 @@ public class MovieService {
         System.out.println("hello"); // ✅ Correct
         return movierepo.findByGenre(genre);
     }
+    public Movies getmoviesid(Long id) {
+        return movierepo.findById(id);
+    }
 
     public Movies addMovie(Movies movie) {
         System.out.println("hello1");
@@ -27,6 +30,5 @@ public class MovieService {
     public List<Movies> getallmovies() {
         System.out.println("All movies found");
         return movierepo.findAll();
-
     }
 }

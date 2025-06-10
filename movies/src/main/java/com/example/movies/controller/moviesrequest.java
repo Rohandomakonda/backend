@@ -24,6 +24,10 @@ public class moviesrequest {
     public ResponseEntity<?> getmoviesbygenre(@PathVariable String genre){
         return ResponseEntity.ok(movieservice.getmoviesgenre(genre));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Movies> getmoviesbyId(@PathVariable Long id){
+        return ResponseEntity.ok(movieservice.getmoviesid(id));
+    }
 
 
     //add movies

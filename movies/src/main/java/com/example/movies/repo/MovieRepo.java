@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MovieRepo extends JpaRepository<Movies, Integer> {
+public interface MovieRepo extends JpaRepository<Movies, Long> {
 
     @Query("SELECT m FROM Movies m WHERE LOWER(m.genre) LIKE LOWER(CONCAT('%', :genre, '%'))")
     List<Movies> findByGenre(@Param("genre") String genre);

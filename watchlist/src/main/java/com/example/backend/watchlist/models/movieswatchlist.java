@@ -9,9 +9,9 @@ import lombok.Data;
 @Entity
 @Data
 public class movieswatchlist {
-    private long userid;
-    private long movieid;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private long userid;
+    private long movieid;
 }
