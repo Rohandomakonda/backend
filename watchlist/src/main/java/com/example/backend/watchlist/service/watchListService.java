@@ -5,11 +5,9 @@ import com.example.backend.watchlist.feign.MovieFeign;
 import com.example.backend.watchlist.models.movieswatchlist;
 import com.example.backend.watchlist.repository.movieswatchListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class watchListService {
 
@@ -30,4 +28,13 @@ public class watchListService {
     }
 
 
+    public movieswatchlist savemovie(movieswatchlist mitem) {
+        mwlr.save(mitem);
+        return mitem;
+    }
+
+    public long deletemovie(long id) {
+        mwlr.deleteById(id);
+        return id;
+    }
 }

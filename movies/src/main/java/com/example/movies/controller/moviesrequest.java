@@ -55,7 +55,7 @@ public class moviesrequest {
         movie.setVideoData(videoFile.getBytes());
         movie.setThumbnailUrl(thumbnailUrl);
 
-         Movies saved=movieservice.addMovie(movie);
+        Movies saved=movieservice.addMovie(movie);
         return ResponseEntity.ok(saved);
     }
 

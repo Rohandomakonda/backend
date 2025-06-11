@@ -11,7 +11,7 @@ import lombok.Data;
 public class movieswatchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private long userid;
     private long movieid;
 }
