@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/episodes")
+@RequestMapping("/api/ss/episodes")
 public class EpisodeController {
     @Autowired
     private EpisodeService episodeservice;

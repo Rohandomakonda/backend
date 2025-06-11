@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/shows")
+@RequestMapping("/api/ss/shows")
 public class SeriesController {
 
     @Autowired

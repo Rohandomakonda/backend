@@ -219,6 +219,7 @@ public class AuthService {
             String refreshToken = tokenProvider.generateRefreshToken(user2.getEmail());
 
             // Step 5: Return the AuthResponse
+            System.out.println("access token is "+ accessToken);
             return new AuthResponse(accessToken, refreshToken, user2.getId(), user2.getEmail(),user2.getName());
 
         } catch (Exception e) {

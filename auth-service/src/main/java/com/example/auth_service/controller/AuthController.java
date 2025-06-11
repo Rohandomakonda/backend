@@ -40,7 +40,7 @@ public class AuthController {
     @PostMapping("/validate")
     public ResponseEntity<Boolean> validateToken(@RequestHeader("Authorization") String token) {
         // Remove "Bearer " prefix
-        token = token.substring(7);
+
         return ResponseEntity.ok(tokenProvider.validateToken(token));
     }
 

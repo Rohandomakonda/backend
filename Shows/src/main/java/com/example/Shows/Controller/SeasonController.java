@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/season")
+@RequestMapping("/api/ss/season")
 public class SeasonController {
 
     @Autowired
