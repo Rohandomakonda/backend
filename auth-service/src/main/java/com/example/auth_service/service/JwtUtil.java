@@ -10,13 +10,13 @@ public class JwtUtil {
     @Value("${security.jwt.secret-key}")
     private String jwtSecret;
 
-    public Long extractClaims(String token) {
-        @SuppressWarnings("deprecation")
+    public String extractUsername(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody();
-        return Long.parseLong(claims.getSubject());
+        return claims.getSubject();  // returns email
     }
+
 }
 

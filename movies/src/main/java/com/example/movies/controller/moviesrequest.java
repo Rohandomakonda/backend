@@ -4,15 +4,15 @@ import com.example.movies.Model.Movies;
 import com.example.movies.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/api/movies")
 public class moviesrequest {
     @Autowired
     private MovieService movieservice;
@@ -25,7 +25,7 @@ public class moviesrequest {
         return ResponseEntity.ok(movieservice.getmoviesgenre(genre));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Movies> getmoviesbyId(@PathVariable Long id){
+    public ResponseEntity<Optional<Movies>> getmoviesbyId(@PathVariable Long id){
         return ResponseEntity.ok(movieservice.getmoviesid(id));
     }
 

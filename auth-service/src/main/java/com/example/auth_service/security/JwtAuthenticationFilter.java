@@ -33,15 +33,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
                 String email = tokenProvider.getEmailFromToken(jwt);
+                System.out.println("got email as" + email);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-
+                System.out.println("loading user detail");
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
+                System.out.println("authentication is set in security context ");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception ex) {
+            System.out.println("error");
             logger.error("Could not set user authentication in security context", ex);
         }
 

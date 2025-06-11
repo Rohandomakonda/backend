@@ -28,7 +28,9 @@ public class JwtTokenProvider {
     }
 
     public String generateAccessToken(Authentication authentication) {
+        System.out.println("generating the access token");
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
+        System.out.println(userPrincipal.getUsername());
         return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
@@ -56,13 +58,16 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) {
+        System.out.println("in validation");
         try {
             Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
                     .build()
                     .parseClaimsJws(token);
+            System.out.println("valideted true");
             return true;
         } catch (JwtException | IllegalArgumentException e) {
+            System.out.println("valideted false");
             return false;
         }
     }

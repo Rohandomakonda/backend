@@ -58,6 +58,7 @@ public class AuthController {
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request, HttpServletResponse response) {
         System.out.println("logging in");
+
         response.setContentType("application/json");
         return ResponseEntity.ok(authService.login(request));
     }
