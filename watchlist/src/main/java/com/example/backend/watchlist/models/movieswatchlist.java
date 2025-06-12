@@ -7,11 +7,29 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Entity
-@Data
 public class movieswatchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userid;
-    private long movieid;
+    private long userId;
+    private long movieId;
+
+    public long getMovieId(){
+        return movieId;
+    }
+    public void setMovieId(long MovieId){
+        movieId = MovieId;
+    }
+    public long getId(){
+        return id;
+    }
+    public void setId(long Id){
+        id = Id;
+    }
+    public long getUserId(){
+        return userId;
+    }
+    public void setUserId(long UserId){
+        userId = UserId;
+    }
 }

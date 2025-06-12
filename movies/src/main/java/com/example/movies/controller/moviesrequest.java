@@ -20,7 +20,7 @@ public class moviesrequest {
 
 
     // getmovue by genre
-    @GetMapping("/{genre}")
+    @GetMapping("/genre/{genre}")
     public ResponseEntity<?> getmoviesbygenre(@PathVariable String genre){
         return ResponseEntity.ok(movieservice.getmoviesgenre(genre));
     }
