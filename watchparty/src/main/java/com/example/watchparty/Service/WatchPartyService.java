@@ -29,14 +29,26 @@ public class WatchPartyService {
 
 
     public Optional<WatchParty> joinWatchParty(String inviteCode, Long userId) {
-        Optional<WatchParty> optParty = repository.findByInviteCode(inviteCode);
-        optParty.ifPresent(party -> {
+        String trimmedCode = inviteCode.trim();
+        System.out.println("Attempting to join party with code: " + trimmedCode);
+
+        Optional<WatchParty> optParty = repository.findByInviteCode(trimmedCode);
+
+        if (optParty.isPresent()) {
+            WatchParty party = optParty.get();
             if (!party.getParticipantIds().contains(userId)) {
                 party.getParticipantIds().add(userId);
-                repository.save(party);
+                WatchParty saved = repository.save(party);
+                System.out.println("User " + userId + " joined party: " + trimmedCode);
+                return Optional.of(saved);
+            } else {
+                System.out.println("User " + userId + " already in party: " + trimmedCode);
+                return optParty; // User already in party
             }
-        });
-        return optParty;
+        } else {
+            System.out.println("Party not found with code: " + trimmedCode);
+            return Optional.empty();
+        }
     }
 
     public Optional<WatchParty> getWatchParty(String inviteCode) {

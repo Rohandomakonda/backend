@@ -10,15 +10,18 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic"); // For outgoing messages
-        config.setApplicationDestinationPrefixes("/app"); // For incoming messages
+        config.enableSimpleBroker("/topic"); // outgoing
+        config.setApplicationDestinationPrefixes("/app"); // incoming
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("*") // Spring Boot 2.4+ (use .setAllowedOrigins(...) for earlier versions)
-                .withSockJS();
-    }
+        registry.addEndpoint("/ws") // this maps to ws://<host>:<port>/ws
+                .setAllowedOriginPatterns("*"); // for native WebSocket
 
+        // Optional: if you want to support SockJS as fallback (like in HTML test client)
+        registry.addEndpoint("/ws")
+                .setAllowedOriginPatterns("*")
+                .withSockJS(); // maps to ws://<host>:<port>/ws/websocket via SockJS
+    }
 }
