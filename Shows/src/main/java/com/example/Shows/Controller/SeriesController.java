@@ -1,5 +1,6 @@
 package com.example.Shows.Controller;
 
+import com.example.Shows.DTO.SeriesDTO;
 import com.example.Shows.Models.Season;
 import com.example.Shows.Models.Series;
 import com.example.Shows.Service.SeriesService;
@@ -50,5 +51,12 @@ public class SeriesController {
     public ResponseEntity<?> getallseries(){
         return ResponseEntity.ok(ss.getallseries());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SeriesDTO> getSeriesById(@PathVariable Long id) {
+        SeriesDTO series = ss.getseriesById(id); // Add this method to SeriesService
+        return ResponseEntity.ok(series);
+    }
+
 }
 

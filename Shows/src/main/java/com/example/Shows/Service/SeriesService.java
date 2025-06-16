@@ -69,6 +69,27 @@ public class SeriesService {
             seriesDTOS.add(seriesDTO);
         }
 
+
         return seriesDTOS;
+    }
+    public SeriesDTO getseriesById(long id) {
+        System.out.println("Print");
+        Series series=seriesRepository.findBySeriesId(id);
+
+            SeriesDTO seriesDTO = new SeriesDTO();
+            seriesDTO.setSeriesId(series.getSeriesId());
+            seriesDTO.setTitle(series.getTitle());
+            seriesDTO.setDescription(series.getDescription());
+            seriesDTO.setReleaseDate(series.getReleaseDate());
+            seriesDTO.setLanguage(series.getLanguage());
+            seriesDTO.setGenres(series.getGenres());
+            seriesDTO.setThumbnailUrl(series.getThumbnail_url());
+            List<SeasonDTO> seasonDTOs = seasonService.getseasons(series.getSeriesId());
+            System.out.println(seasonDTOs.size());
+            seriesDTO.setSeasons(seasonDTOs);
+
+
+
+        return seriesDTO;
     }
 }
