@@ -12,4 +12,8 @@ import java.util.List;
 public interface SeriesRepository extends JpaRepository<Series,Integer> {
     @Query("SELECT s FROM Series s WHERE LOWER(s.genres) LIKE LOWER(CONCAT('%', :genre, '%'))")
     List<Series> findByGenreContainingIgnoreCase(@Param("genre") String genre);
+    @Query("SELECT s FROM Series s WHERE s.seriesId = :seriesId")
+    Series findBySeriesId(@Param("seriesId") Long seriesId);
+
 }
+
