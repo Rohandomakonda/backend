@@ -55,7 +55,7 @@ public class watchListService {
         List<serieswatchlist> series = swlr.findByUserid(profileId);
         List<SeriesDTO> listtemp = new ArrayList<>();
         for(serieswatchlist item : series){
-            SeriesDTO sdto = sf.getseriesbyId(item.getSeriesid()).getBody();
+            SeriesDTO sdto = sf.getSeriesById(item.getSeriesid()).getBody();
             listtemp.add(sdto);
         }
         return listtemp;

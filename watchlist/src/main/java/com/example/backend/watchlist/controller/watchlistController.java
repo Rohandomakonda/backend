@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @RestController
-@RequestMapping("/watchlist")
+@RequestMapping("/api/watchlist")
 @CrossOrigin(origins = "*")
 public class watchlistController {
 

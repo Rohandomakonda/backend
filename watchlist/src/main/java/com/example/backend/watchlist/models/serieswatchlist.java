@@ -15,4 +15,28 @@ public class serieswatchlist {
     private Long id;
     private long userid;
     private long seriesid;
+
+    public Long getId() {
+        return id;
+    }
+
+    public long getUserid() {
+        return userid;
+    }
+
+    public long getSeriesid() {
+        return seriesid;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUserid(long userid) {
+        this.userid = userid;
+    }
+
+    public void setSeriesid(long seriesid) {
+        this.seriesid = seriesid;
+    }
 }

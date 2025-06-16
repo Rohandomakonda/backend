@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name="SERIES-SERVICE")
 public interface SeriesFeign {
-    @GetMapping("/api/series/{id}")
-    ResponseEntity<SeriesDTO> getseriesbyId(@PathVariable Long id);
+    @GetMapping("/api/ss/shows/getseries/{id}")
+    ResponseEntity<SeriesDTO> getSeriesById(@PathVariable Long id);
 }
