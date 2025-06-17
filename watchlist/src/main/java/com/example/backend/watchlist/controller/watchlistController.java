@@ -46,10 +46,10 @@ public class watchlistController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/movie/{id}")
-    public ResponseEntity<Long> deletemoviewatchlist(@PathVariable long id){
-        System.out.println("Attempting to delete movie watchlist entry with ID: " + id);
-        long deletedId = wls.deletemovie(id);
+    @DeleteMapping("/movie")
+    public ResponseEntity<List<Long>> deletemoviewatchlist(@RequestParam long userid, @RequestParam long movieid){
+        System.out.println("Attempting to delete movie watchlist entry with ID: " + userid);
+        List<Long> deletedId = wls.deletemovie(userid,movieid);
         System.out.println("Movie watchlist entry deleted with ID: " + deletedId);
         return ResponseEntity.ok(deletedId);
     }
@@ -80,10 +80,10 @@ public class watchlistController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/series/{id}")
-    public ResponseEntity<Long> deleteserieswatchlist(@PathVariable long id){
-        System.out.println("Attempting to delete series watchlist entry with ID: " + id);
-        long deletedId = wls.deleteseries(id);
+    @DeleteMapping("/series")
+    public ResponseEntity<List<Long>> deleteserieswatchlist(@RequestParam long userid, @RequestParam long seriesid){
+        System.out.println("Attempting to delete series watchlist entry with ID: " + userid);
+        List<Long> deletedId = wls.deleteseries(userid,seriesid);
         System.out.println("Series watchlist entry deleted with ID: " + deletedId);
         return ResponseEntity.ok(deletedId);
     }

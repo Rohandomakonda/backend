@@ -45,9 +45,9 @@ public class watchListService {
         return mitem;
     }
 
-    public long deletemovie(long id) {
-        mwlr.deleteById(id);
-        return id;
+    public List<Long> deletemovie(long userid,long movieid) {
+        mwlr.deleteByUserIdAndMovieId(userid,movieid);
+        return List.of(userid,movieid);
     }
 
     // Series methods
@@ -66,8 +66,8 @@ public class watchListService {
         return sitem;
     }
 
-    public long deleteseries(long id) {
-        swlr.deleteById(id);
-        return id;
+    public List<Long> deleteseries(long userid,long seriesid) {
+        swlr.deleteByUseridAndSeriesid(userid,seriesid);
+        return List.of(userid,seriesid);
     }
 }
