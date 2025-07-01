@@ -52,7 +52,7 @@ public class SeriesController {
         return ResponseEntity.ok(ss.getallseries());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getseries/{id}")
     public ResponseEntity<SeriesDTO> getSeriesById(@PathVariable Long id) {
         SeriesDTO series = ss.getseriesById(id); // Add this method to SeriesService
         return ResponseEntity.ok(series);

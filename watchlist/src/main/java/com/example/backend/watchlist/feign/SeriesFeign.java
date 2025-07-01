@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name="SERIES-SERVICE")
+@FeignClient(name="SHOWS-SERVICE")
 public interface SeriesFeign {
     @GetMapping("/api/ss/shows/getseries/{id}")
     ResponseEntity<SeriesDTO> getSeriesById(@PathVariable Long id);
